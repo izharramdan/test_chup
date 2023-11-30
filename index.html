@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+
+        .container-fluid {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            z-index: 1;
+            width: 100%;
+            order: -1;
+        }
+
+        #sidebar {
+            background-color: #ffffff;
+            color: #343a40;
+            border: 1px solid #dee2e6;
+            height: 100vh;
+            width: 99px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #sidebar h5 {
+            font-size: 16px;
+        }
+
+        #sidebar ul {
+            font-size: 14px;
+            list-style-type: none;
+            padding: 0;
+            margin-top: auto;
+        }
+
+        #content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        #budget-and-chart {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        #budget-summary {
+            background-color: #ffffff;
+            color: #343a40;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            max-width: 260px;
+            font-size: 16px;
+            margin-right: 20px;
+        }
+
+        #myChartContainer {
+            position: relative;
+            display: flex;
+            flex: 1;
+            margin-top: -32px;
+        }
+
+        #myChart {
+            max-width: 100%;
+        }
+
+        #myTable {
+            margin-top: 20px;
+            flex: 1;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <nav id="sidebar" class="col-md-2 col-lg-2 d-md-block">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <h5 class="nav-link active">
+                            Dashboard
+                        </h5>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Reports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Analytics
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-10 ml-sm-auto" id="content">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">BA</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <form class="form-inline">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn btn-light my-2 my-sm-0" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-success mx-2">Create</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-info">Export</button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="budget-and-chart">
+                <div id="budget-summary">
+                    <h5 style="font-size: 16px;">Budget Summary</h5>
+                    <p>Balance:</p>
+                    <ul>
+                        <li>Revenue: $10,000</li>
+                        <li>Expenses: $5,000</li>
+                        <li>Deficit: $-5,000</li>
+                    </ul>
+                </div>
+
+                <div id="myChartContainer">
+                    <canvas id="myChart" width="1017" height="389"></canvas>
+                </div>
+            </div>
+
+            <div id="myTable">
+                <h5 style="font-size: 16px;">Table</h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Proposals</th>
+                            <th>Status</th>
+                            <th>Creates by</th>
+                            <th>Expense</th>
+                            <th>Revenue</th>
+                            <th>Surplus/Deficit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Proposal 1</td>
+                            <td>Approved</td>
+                            <td>User 1</td>
+                            <td>$2,000</td>
+                            <td>$5,000</td>
+                            <td>$3,000</td>
+                        </tr>
+                        <tr>
+                            <td>Proposal 2</td>
+                            <td>Pending</td>
+                            <td>User 2</td>
+                            <td>$1,500</td>
+                            <td>$3,000</td>
+                            <td>$1,500</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script>
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan 2022', 'Feb 2022', 'Mar 2022', 'Apr 2022', 'May 2022', 'Jun 2022', 'Jul 2022', 'Aug 2022', 'Sep 2022', 'Oct 2022'],
+                datasets: [{
+                    label: 'Visualization',
+                    data: [12, 19, 3, 5, 2, 15, 8, 10, 7, 4],
+                    backgroundColor: [
+                        'rgba(169, 169, 169, 0.2)',
+                        'rgba(169, 169, 169, 0.2)',
+                        'rgba(169, 169, 169, 0.2)',
+                        'rgba(169, 169, 169, 0.2)',
+                        'rgba(169, 169, 169, 0.2)',
+                        'rgba(169, 169, 169, 0.2)',
+                        'rgba(169, 169, 169, 0.2)',
+                        'rgba(169, 169, 169, 0.2)',
+                        'rgba(169, 169, 169, 0.2)',
+                        'rgba(169, 169, 169, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                },
+            }
+        });
+    </script>
+
+</body>
+
+</html>
